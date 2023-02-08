@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Rudimentary GUI For AddressBook Web Application</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Buddy ID</th>
+                <th>Buddy Name</th>
+                <th>Buddy Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="buddy : ${buddyInfoList}">
+                <td><span th:text="${buddy.id}"> ID</span> </td>
+                <td><span th:text="${buddy.name}"> Name</span> </td>
+                <td><span th:text="${buddy.number}"> Phone Number</span> </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
