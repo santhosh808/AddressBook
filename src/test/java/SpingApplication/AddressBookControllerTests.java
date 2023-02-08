@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,6 +27,9 @@ public class AddressBookControllerTests {
         this.mockMvc.perform(post("/buddyinfo/add?addressBookID=1&buddyName=San&buddyNumber=613-123-4546")).andExpect(status().isOk()).andExpect(content().string(containsString("{\"id\":1,\"buddyInfolist\":[{\"id\":1,\"name\":\"San\",\"number\":\"613-123-4546\"}]}")));
 
         this.mockMvc.perform(post("/buddyinfo/remove?addressBookID=1&buddyID=1")).andExpect(status().isOk()).andExpect(content().string(containsString("{\"id\":1,\"buddyInfolist\":[]}")));
+
+        this.mockMvc.perform(post("/buddyinfo/add?addressBookID=1&buddyName=Omar&buddyNumber=613-987-6543"));
+        this.mockMvc.perform(get("/addressbook/view?addressBookID=1")).andExpect(status().isOk()).andExpect(content().string(containsString("Omar")));
     }
     /*
     @Test
